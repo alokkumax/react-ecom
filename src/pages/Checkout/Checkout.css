@@ -1,0 +1,67 @@
+/* Checkout.css — simple, beginner-friendly checkout styles */
+
+.checkout {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Stack the form fields vertically with some spacing */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.checkout-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.checkout-label input,
+.checkout-label textarea {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* Order summary box */
+.checkout-summary {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+  background-color: var(--white);
+}
+
+.checkout-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+
+.checkout-summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.checkout-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.checkout-place-order {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
