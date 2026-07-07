@@ -1,0 +1,110 @@
+/* Header.css — Styles for the top navigation bar */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+/* Logo */
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.header-logo:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+/* Navigation links */
+.header-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-link {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.nav-link:hover {
+  background-color: var(--bg);
+  text-decoration: none;
+}
+
+/* Active link — NavLink adds "active" class automatically */
+.nav-link.active {
+  color: var(--primary);
+  font-weight: 600;
+  background-color: var(--bg);
+}
+
+/* Search box */
+.header-search {
+  flex: 1;
+  max-width: 280px;
+  min-width: 140px;
+}
+
+.header-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 0.95rem;
+}
+
+.header-search input:focus {
+  outline: 2px solid var(--primary);
+  border-color: var(--primary);
+}
+
+/* Cart icon */
+.header-cart {
+  text-decoration: none;
+  padding: 4px 8px;
+}
+
+.header-cart:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+}
+
+/* ----- Responsive: stack on small screens ----- */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .header-nav {
+    justify-content: center;
+  }
+
+  .header-search {
+    max-width: 100%;
+  }
+
+  .header-cart {
+    text-align: center;
+  }
+}

@@ -42,10 +42,10 @@ body {
 }
 
 /*
-  Each page right now is just a <div> with text (Home, Cart, etc.)
-  This styles that top-level div like a clean white card.
+  Each page is a <div> with text (Home, Cart, etc.)
+  .page-content wraps the page below the Header.
 */
-#root > div {
+.page-content > div {
   background-color: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
