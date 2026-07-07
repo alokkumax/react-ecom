@@ -9,15 +9,17 @@ const searchSlice = createSlice({
     searchTerm: '', // whatever the user types in the search box
   },
   reducers: {
-    // Placeholder for now — just returns state unchanged.
-    // Real logic will update searchTerm in a later step.
-    setSearchTerm: (state) => {
-      return state
+    // Save whatever the user typed into the search box.
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload
     },
   },
 })
 
 // Export the action so components can call dispatch(setSearchTerm('shoes'))
 export const { setSearchTerm } = searchSlice.actions
+
+// Selector — read the current search term from the store.
+export const selectSearchTerm = (state) => state.search.searchTerm
 
 export default searchSlice.reducer
