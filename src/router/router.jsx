@@ -3,22 +3,18 @@
 
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 
-import Header from '../components/Header'
 import Home from '../pages/Home'
 import ProductDetail from '../pages/ProductDetail'
 import Cart from '../components/Cart'
 import Checkout from '../pages/Checkout'
 import NotFound from '../pages/NotFound'
 
-// Layout wraps every page with the Header on top
+// Layout wraps every page — each page adds its own Header where needed
 function AppLayout() {
   return (
-    <>
-      <Header />
-      <main className="page-content">
-        <Outlet />
-      </main>
-    </>
+    <main className="page-content">
+      <Outlet />
+    </main>
   )
 }
 

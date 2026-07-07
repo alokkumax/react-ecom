@@ -41,11 +41,8 @@ body {
   padding: 32px 20px;
 }
 
-/*
-  Each page is a <div> with text (Home, Cart, etc.)
-  .page-content wraps the page below the Header.
-*/
-.page-content > div {
+/* Placeholder pages (Cart, Checkout, etc.) */
+.page-content > div:not(.home):not(.product-detail):not(.loading):not(.error-message) {
   background-color: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
