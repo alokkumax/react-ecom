@@ -2,9 +2,13 @@
 // Receives a single "product" object as a prop from ProductList.
 
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../redux/slices/cartSlice'
 import './ProductItem.css'
 
 function ProductItem({ product }) {
+  const dispatch = useDispatch()
+
   return (
     <div className="product-item">
       {/* Product image */}
@@ -20,8 +24,11 @@ function ProductItem({ product }) {
         <p className="product-item-price">${product.price}</p>
         <p className="product-item-rating">⭐ {product.rating}</p>
 
-        {/* Button does nothing yet — Redux comes in a later step */}
-        <button type="button" className="product-item-btn">
+        <button
+          type="button"
+          className="product-item-btn"
+          onClick={() => dispatch(addToCart(product))}
+        >
           Add to Cart
         </button>
       </div>
