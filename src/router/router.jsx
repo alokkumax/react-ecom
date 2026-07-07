@@ -1,13 +1,16 @@
 // router.jsx — Defines all URL paths for ShoppyGlobe.
 // createBrowserRouter maps each path to a page/component.
 
+import { lazy } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 
-import Home from '../pages/Home'
-import ProductDetail from '../pages/ProductDetail'
-import Cart from '../components/Cart'
-import Checkout from '../pages/Checkout'
-import NotFound from '../pages/NotFound'
+// lazy() only loads each page's code when the user actually visits it.
+// This keeps the first page load small and fast.
+const Home = lazy(() => import('../pages/Home'))
+const ProductDetail = lazy(() => import('../pages/ProductDetail'))
+const Cart = lazy(() => import('../components/Cart'))
+const Checkout = lazy(() => import('../pages/Checkout'))
+const NotFound = lazy(() => import('../pages/NotFound'))
 
 // Layout wraps every page — each page adds its own Header where needed
 function AppLayout() {

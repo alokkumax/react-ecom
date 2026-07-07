@@ -1,10 +1,12 @@
 // Checkout page — a simple order form plus a summary of the cart.
 // This is a "dummy" page: the form doesn't actually submit anywhere yet.
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
   selectCartItems,
   selectCartTotal,
+  clearCart,
 } from '../../redux/slices/cartSlice'
 import './Checkout.css'
 
@@ -12,6 +14,16 @@ function Checkout() {
   // Read the cart straight from Redux
   const items = useSelector(selectCartItems)
   const total = useSelector(selectCartTotal)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate() // lets us send the user to another page
+
+  // Runs when the user clicks "Place Order"
+  function handlePlaceOrder() {
+    alert('Order placed') // simple confirmation popup
+    dispatch(clearCart()) // empty the cart
+    navigate('/') // go back to the Home page
+  }
 
   return (
     <div className="checkout">
@@ -62,8 +74,12 @@ function Checkout() {
         <p className="checkout-total">Total: ${total.toFixed(2)}</p>
       </div>
 
-      {/* Place Order does nothing yet */}
-      <button type="button" className="checkout-place-order">
+      {/* Place Order → alert, clear cart, then redirect home */}
+      <button
+        type="button"
+        className="checkout-place-order"
+        onClick={handlePlaceOrder}
+      >
         Place Order
       </button>
     </div>

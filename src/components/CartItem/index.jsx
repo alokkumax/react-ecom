@@ -22,6 +22,7 @@ function CartItem({ item }) {
         src={item.thumbnail}
         alt={item.title}
         className="cart-item-image"
+        loading="lazy"
       />
 
       {/* Product info */}
