@@ -3,11 +3,15 @@
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchTerm, selectSearchTerm } from '../../redux/slices/searchSlice'
+import { selectCartCount } from '../../redux/slices/cartSlice'
 import './Header.css'
 
 function Header() {
   const dispatch = useDispatch()
   const searchTerm = useSelector(selectSearchTerm)
+
+  // Live count of items in the cart (updates automatically via Redux)
+  const cartCount = useSelector(selectCartCount)
 
   return (
     <header className="header">
@@ -36,9 +40,10 @@ function Header() {
         />
       </div>
 
-      {/* Cart icon — also links to cart page */}
+      {/* Cart icon with live item count — also links to cart page */}
       <NavLink to="/cart" className="header-cart">
         <span className="cart-icon">🛒</span>
+        <span className="cart-count">{cartCount}</span>
       </NavLink>
     </header>
   )
