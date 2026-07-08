@@ -1,7 +1,14 @@
 // Loading — Simple reusable loading message shown while data is fetching.
 
-function Loading() {
-  return <div className="loading">Loading products...</div>
+import PropTypes from 'prop-types'
+
+function Loading({ message = 'Loading products...' }) {
+  return <div className="loading">{message}</div>
+}
+
+// PropTypes: message is an optional string
+Loading.propTypes = {
+  message: PropTypes.string,
 }
 
 export default Loading

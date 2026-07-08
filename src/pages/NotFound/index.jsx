@@ -7,10 +7,10 @@ function NotFound() {
   return (
     <div className="not-found">
       <p className="not-found-code">404</p>
-      <h1>Page not found</h1>
-      <p>The page you're looking for doesn't exist or has moved.</p>
+      <h1>Oops!</h1>
+      <p>The page you are trying to visit doesn&apos;t exist.</p>
       <Link to="/" className="not-found-link">
-        Back to home
+        Back to Home
       </Link>
     </div>
   )
