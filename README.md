@@ -9,6 +9,7 @@ has lots of beginner-friendly comments explaining what each part does.
 
 > **Live product data** comes from the free [DummyJSON](https://dummyjson.com/)
 > API — no backend or database is needed.
+> Live URL - https://react-ecom-five-omega.vercel.app/
 
 ---
 
