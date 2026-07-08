@@ -1,5 +1,6 @@
 # 🛒 ShoppyGlobe
 
+Repo Link - https://github.com/alokkumax/react-ecom.git
 ShoppyGlobe is a small **online shopping website** built with React. You can
 browse products, search for what you want, open a product to read more about it,
 add things to a cart, change quantities, and go through a simple checkout.
