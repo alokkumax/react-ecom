@@ -1,4 +1,7 @@
-/* ProductList.css — Home hero + responsive grid of product cards */
+/*
+  ProductList.css — Home banner, catalog toolbar, and the responsive
+  product grid (1 col mobile → 2 col tablet → 4 col desktop).
+*/
 
 /* ----- Image banner ----- */
 .home-banner {
@@ -164,7 +167,7 @@
   font-weight: 600;
 }
 
-/* Loading and error states inside the list area */
+/* Reusable card for the Loading / ErrorMessage states (used app-wide) */
 .loading,
 .error-message {
   grid-column: 1 / -1;
