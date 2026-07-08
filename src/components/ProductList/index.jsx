@@ -27,6 +27,12 @@ function ProductList() {
   // When it scrolls into view, we know the user reached the end.
   const sentinelRef = useRef(null)
 
+  // Infinite scroll only runs for the default view (no search/filter/sort).
+  // The sentinel is only rendered in this view, so the observer effect below
+  // depends on it to re-attach whenever we return to the default view.
+  const isDefaultView =
+    searchTerm.trim() === '' && category === 'all' && sortBy === 'featured'
+
   // Load the list of categories once (for the dropdown)
   useEffect(() => {
     async function fetchCategories() {
@@ -61,7 +67,7 @@ function ProductList() {
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [loadMore])
+  }, [loadMore, isDefaultView, hasMore])
 
   // Step 1: Show loading message while fetching the first page
   if (loading) {
@@ -105,10 +111,6 @@ function ProductList() {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ')
 
-  // Infinite scroll only runs for the default view (no search/filter/sort)
-  const isDefaultView =
-    searchTerm.trim() === '' && category === 'all' && sortBy === 'featured'
-
   // Clear the search, category, and sort back to defaults
   function handleReset() {
     dispatch(setSearchTerm(''))
@@ -117,7 +119,7 @@ function ProductList() {
   }
 
   return (
-    <>
+    <section aria-label="Product catalog">
       {/* ----- Catalog toolbar ----- */}
       <div className="catalog-toolbar">
         <div className="catalog-heading">
@@ -161,7 +163,7 @@ function ProductList() {
       {result.length === 0 ? (
         <div className="catalog-empty">
           <div className="catalog-empty-icon">🔍</div>
-          <h2>No products match your filters</h2>
+          <h2>No products found.</h2>
           <p>Try a different search term or clear the category filter.</p>
           <button
             type="button"
@@ -186,7 +188,7 @@ function ProductList() {
           {loadingMore && <span>Loading more products...</span>}
         </div>
       )}
-    </>
+    </section>
   )
 }
 

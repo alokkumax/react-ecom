@@ -53,6 +53,13 @@
   resize: vertical;
 }
 
+/* Validation error message under a field */
+.checkout-error {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 /* Order summary box */
 .checkout-summary {
   border: 1px solid var(--border);
@@ -80,6 +87,20 @@
 
 .checkout-summary-item:last-child {
   border-bottom: none;
+}
+
+/* Subtotal / shipping / tax rows */
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.checkout-summary-row span:last-child {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .checkout-total {

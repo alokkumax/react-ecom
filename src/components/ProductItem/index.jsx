@@ -59,7 +59,7 @@ function ProductItem({ product }) {
         <Link to={`/product/${product.id}`} className="product-item-title-link">
           <h3 className="product-item-title">{product.title}</h3>
         </Link>
-        <p className="product-item-price">${product.price}</p>
+        <p className="product-item-price">${product.price.toFixed(2)}</p>
         <p className="product-item-rating">⭐ {product.rating}</p>
 
         {/* Before adding: show the button.

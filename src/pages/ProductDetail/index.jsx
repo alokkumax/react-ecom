@@ -128,13 +128,13 @@ function ProductDetail() {
 
       <div className="product-detail-info">
         <h1>{product.title}</h1>
-        <p className="product-detail-price">${product.price}</p>
+        <p className="product-detail-price">${product.price.toFixed(2)}</p>
         <p className="product-detail-rating">⭐ {product.rating} rating</p>
         <p className="product-detail-description">{product.description}</p>
 
         <ul className="product-detail-meta">
           <li>
-            <strong>Brand:</strong> {product.brand}
+            <strong>Brand:</strong> {product.brand || '—'}
           </li>
           <li>
             <strong>Category:</strong> {product.category}

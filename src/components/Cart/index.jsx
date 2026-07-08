@@ -7,13 +7,9 @@ import {
   selectCartItems,
   selectCartTotal,
 } from '../../redux/slices/cartSlice'
+import { getOrderSummary } from '../../utils/orderSummary'
 import CartItem from '../CartItem'
 import './Cart.css'
-
-// Order rules
-const FREE_SHIPPING_THRESHOLD = 100 // spend this much for free shipping
-const SHIPPING_FEE = 7.99
-const TAX_RATE = 0.08 // 8%
 
 function Cart() {
   const items = useSelector(selectCartItems)
@@ -33,12 +29,9 @@ function Cart() {
     )
   }
 
-  // Work out shipping, tax, and the grand total
-  const hasFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD
-  const shipping = hasFreeShipping ? 0 : SHIPPING_FEE
-  const tax = subtotal * TAX_RATE
-  const total = subtotal + shipping + tax
-  const remainingForFree = FREE_SHIPPING_THRESHOLD - subtotal
+  // Shared order math (shipping, tax, total) — same rules as Checkout
+  const { shipping, tax, total, hasFreeShipping, remainingForFree } =
+    getOrderSummary(subtotal)
 
   return (
     <div className="cart">

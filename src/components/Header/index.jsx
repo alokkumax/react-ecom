@@ -75,8 +75,14 @@ function Header() {
       </button>
 
       {/* Cart icon with live item count — also links to cart page */}
-      <NavLink to="/cart" className="header-cart">
-        <span className="cart-icon">🛒</span>
+      <NavLink
+        to="/cart"
+        className="header-cart"
+        aria-label={`View cart, ${cartCount} items`}
+      >
+        <span className="cart-icon" aria-hidden="true">
+          🛒
+        </span>
         <span className="cart-count">{cartCount}</span>
       </NavLink>
     </header>
