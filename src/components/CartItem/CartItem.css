@@ -1,69 +1,153 @@
-/* CartItem.css — simple styles for one cart row */
+/* CartItem.css — one cart row */
 
 .cart-item {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px;
+  padding: 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background-color: var(--white);
-  margin-bottom: 12px;
+  box-shadow: var(--shadow);
 }
 
 .cart-item-image {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
-  background-color: var(--bg);
-  border-radius: var(--radius);
+  background-color: #fbf5ea;
+  border-radius: 10px;
+  padding: 6px;
+  flex-shrink: 0;
 }
 
 /* Info grows to push the controls to the right */
 .cart-item-info {
   flex: 1;
   text-align: left;
+  min-width: 0;
 }
 
 .cart-item-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.cart-item-price {
-  font-size: 0.95rem;
-  color: var(--primary);
+  font-family: var(--font);
+  font-size: 0.98rem;
   font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+.cart-item-category {
+  margin: 0 0 6px;
+  color: var(--text-light);
+  font-size: 0.82rem;
+  text-transform: capitalize;
+}
+
+/* Small "≈$X each" pill */
+.cart-item-each {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Quantity controls — outlined pill */
 .cart-item-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  flex-shrink: 0;
 }
 
 .cart-item-btn {
-  width: 32px;
-  height: 32px;
-  font-size: 1rem;
-  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  background-color: var(--bg);
+  color: var(--text);
+  box-shadow: none;
 }
 
-/* Grey out and block the minus button when it can't go lower */
-.cart-item-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.cart-item-btn:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: #fff;
+  transform: none;
+  box-shadow: none;
 }
 
 .cart-item-quantity {
-  min-width: 24px;
+  min-width: 26px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--text);
 }
 
+/* Boxed line total */
+.cart-item-total {
+  min-width: 92px;
+  text-align: center;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-retro);
+  font-size: 1.05rem;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+/* Remove — plain coral text */
 .cart-item-remove {
-  cursor: pointer;
-  padding: 8px 12px;
+  background-color: transparent;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 8px;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.cart-item-remove:hover {
+  background-color: transparent;
+  color: var(--primary-hover);
+  transform: none;
+  box-shadow: none;
+  text-decoration: underline;
+}
+
+/* ----- Responsive: wrap controls under the info on small screens ----- */
+@media (max-width: 620px) {
+  .cart-item {
+    flex-wrap: wrap;
+  }
+
+  .cart-item-info {
+    flex-basis: calc(100% - 88px);
+  }
+
+  .cart-item-controls {
+    order: 3;
+  }
+
+  .cart-item-total {
+    order: 4;
+    margin-left: auto;
+  }
+
+  .cart-item-remove {
+    order: 5;
+  }
 }

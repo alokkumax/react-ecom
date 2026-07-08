@@ -1,0 +1,123 @@
+/* Cart.css — two-column cart layout with order summary */
+
+.cart {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.cart h1 {
+  margin-bottom: 18px;
+}
+
+/* Left = items, Right = summary */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr 340px;
+  }
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ----- Order summary panel ----- */
+.cart-summary {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+  position: sticky;
+  top: 96px; /* stays visible below the sticky header */
+}
+
+.cart-summary h2 {
+  margin-bottom: 14px;
+}
+
+/* Free-shipping progress note */
+.cart-shipping-note {
+  background-color: var(--accent-soft);
+  color: #12756a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.cart-shipping-note.is-free {
+  background-color: #dff5e1;
+  color: #1f8a3b;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.cart-summary-row span:last-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cart-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  font-family: var(--font-retro);
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.cart-checkout-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  font-size: 1rem;
+}
+
+.cart-continue {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.cart-continue:hover {
+  color: var(--primary);
+}
+
+/* ----- Empty cart state ----- */
+.cart-empty {
+  text-align: center;
+  padding: 56px 24px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.cart-shop-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--accent);
+}

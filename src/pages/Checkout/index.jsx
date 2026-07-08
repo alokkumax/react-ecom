@@ -1,8 +1,9 @@
 // Checkout page — a simple order form plus a summary of the cart.
 // This is a "dummy" page: the form doesn't actually submit anywhere yet.
 
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   selectCartItems,
   selectCartTotal,
@@ -16,13 +17,30 @@ function Checkout() {
   const total = useSelector(selectCartTotal)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate() // lets us send the user to another page
+
+  // Tracks whether the order has been placed (shows the success screen)
+  const [orderPlaced, setOrderPlaced] = useState(false)
 
   // Runs when the user clicks "Place Order"
   function handlePlaceOrder() {
-    alert('Order placed') // simple confirmation popup
+    setOrderPlaced(true) // show the "Order Placed" UI
     dispatch(clearCart()) // empty the cart
-    navigate('/') // go back to the Home page
+  }
+
+  // ----- Success screen shown after the order is placed -----
+  if (orderPlaced) {
+    return (
+      <div className="checkout">
+        <div className="order-success">
+          <div className="order-success-check">✓</div>
+          <h1>Order Placed!</h1>
+          <p>Thank you for your purchase. Your order is on its way.</p>
+          <Link to="/" className="order-success-link">
+            Continue Shopping
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -71,14 +89,18 @@ function Checkout() {
           </ul>
         )}
 
-        <p className="checkout-total">Total: ${total.toFixed(2)}</p>
+        <p className="checkout-total">
+          <span>Total</span>
+          <span>${total.toFixed(2)}</span>
+        </p>
       </div>
 
-      {/* Place Order → alert, clear cart, then redirect home */}
+      {/* Place Order → show success UI + clear the cart */}
       <button
         type="button"
         className="checkout-place-order"
         onClick={handlePlaceOrder}
+        disabled={items.length === 0}
       >
         Place Order
       </button>

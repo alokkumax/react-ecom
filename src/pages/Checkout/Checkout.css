@@ -1,67 +1,159 @@
-/* Checkout.css — simple, beginner-friendly checkout styles */
+/* Checkout.css — checkout form + order summary */
 
 .checkout {
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
-  padding: 24px;
 }
 
-/* Stack the form fields vertically with some spacing */
+/* Card wrapper for the form */
 .checkout-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   margin-bottom: 24px;
+  padding: 24px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .checkout-label {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
   text-align: left;
 }
 
 .checkout-label input,
 .checkout-label textarea {
-  padding: 10px;
+  padding: 11px 14px;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 10px;
+  background-color: var(--bg);
   font-size: 1rem;
-  font-family: inherit;
+  font-family: var(--font);
+  font-weight: 400;
+  color: var(--text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.checkout-label input:focus,
+.checkout-label textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background-color: var(--white);
+}
+
+.checkout-label textarea {
+  resize: vertical;
 }
 
 /* Order summary box */
 .checkout-summary {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 22px;
   margin-bottom: 24px;
   background-color: var(--white);
+  box-shadow: var(--shadow);
 }
 
 .checkout-summary-list {
   list-style: none;
   padding: 0;
-  margin: 12px 0;
+  margin: 14px 0;
 }
 
 .checkout-summary-item {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  gap: 12px;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.checkout-summary-item:last-child {
+  border-bottom: none;
 }
 
 .checkout-total {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-retro);
+  font-size: 1.3rem;
+  color: var(--text);
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 2px solid var(--border);
 }
 
 .checkout-place-order {
   width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  cursor: pointer;
+  padding: 14px;
+  font-size: 1.05rem;
+}
+
+/* ----- Order placed success screen ----- */
+.order-success {
+  text-align: center;
+  padding: 56px 28px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.order-success-check {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(31, 158, 143, 0.35);
+  animation: order-pop 0.35s ease;
+}
+
+@keyframes order-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.order-success h1 {
+  margin-bottom: 8px;
+}
+
+.order-success-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.order-success-link:hover {
+  background-color: var(--primary-hover);
+  opacity: 1;
 }

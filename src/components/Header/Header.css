@@ -1,110 +1,251 @@
-/* Header.css — Styles for the top navigation bar */
+/* Header.css — Retro-modern top navigation bar */
 
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
   background-color: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 18px;
   box-shadow: var(--shadow);
-  padding: 16px 20px;
-  margin-bottom: 24px;
+  padding: 14px 22px;
+  margin-bottom: 28px;
+  /* Stay pinned to the top while scrolling */
+  position: sticky;
+  top: 12px;
+  z-index: 100;
 }
 
-/* Logo */
+/* Left cluster: logo + Home sit together */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Logo — retro wordmark */
 .header-logo {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-retro);
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
   color: var(--primary);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .header-logo:hover {
   text-decoration: none;
-  opacity: 0.85;
+  opacity: 1;
+  color: var(--primary-hover);
 }
 
 /* Navigation links */
 .header-nav {
   display: flex;
-  gap: 12px;
+  gap: 6px;
 }
 
 .nav-link {
   color: var(--text);
   text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .nav-link:hover {
   background-color: var(--bg);
   text-decoration: none;
+  opacity: 1;
 }
 
 /* Active link — NavLink adds "active" class automatically */
 .nav-link.active {
   color: var(--primary);
-  font-weight: 600;
-  background-color: var(--bg);
+  font-weight: 700;
+  background-color: transparent;
 }
 
 /* Search box */
 .header-search {
+  position: relative;
   flex: 1;
-  max-width: 280px;
-  min-width: 140px;
+  max-width: 300px;
+  min-width: 150px;
 }
 
 .header-search input {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 40px 10px 16px;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 999px;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: var(--font);
   font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Clear (X) button inside the input */
+.header-search-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.header-search-clear:hover {
+  background-color: var(--border);
+  color: var(--text);
+  transform: translateY(-50%);
+  box-shadow: none;
+}
+
+.header-search input::placeholder {
+  color: var(--text-light);
 }
 
 .header-search input:focus {
-  outline: 2px solid var(--primary);
-  border-color: var(--primary);
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background-color: var(--white);
 }
 
-/* Cart icon */
+/* Search icon toggle — hidden on desktop, shown on mobile */
+.header-search-toggle {
+  display: none;
+  background: transparent;
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 1.3rem;
+  line-height: 1;
+  box-shadow: none;
+  /* Desaturate the emoji so it reads as a uniform grey like the cart */
+  filter: grayscale(1);
+}
+
+.header-search-toggle:hover {
+  background-color: var(--bg);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Cart icon + live count badge */
 .header-cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
   text-decoration: none;
-  padding: 4px 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: background-color 0.15s ease;
 }
 
 .header-cart:hover {
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 1;
+  background-color: var(--bg);
 }
 
 .cart-icon {
   font-size: 1.5rem;
+  line-height: 1;
 }
 
-/* ----- Responsive: stack on small screens ----- */
+.cart-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 2px solid var(--white);
+}
+
+/* ----- Responsive: single-line header with a toggling search ----- */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 4px; /* keep the two icons snug together */
   }
 
+  /* Logo alone acts as the Home link on mobile */
   .header-nav {
-    justify-content: center;
+    display: none;
   }
 
-  .header-search {
-    max-width: 100%;
+  /* Closed state: logo left, then search icon + cart on the right */
+  .header-left {
+    order: 1;
+    min-width: 0; /* let the logo shrink instead of pushing icons out */
+  }
+
+  .header-logo {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Keep the icons from shrinking or overflowing the header box */
+  .header-search-toggle {
+    display: inline-flex;
+    order: 2;
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
   .header-cart {
-    text-align: center;
+    order: 3;
+    margin-left: 0;
+    flex-shrink: 0;
+  }
+
+  /* Search input is hidden while closed */
+  .header-search {
+    display: none;
+    max-width: 100%;
+  }
+
+  /* Open state: hide everything else and let the search fill the line */
+  .header--search-open .header-left,
+  .header--search-open .header-cart {
+    display: none;
+  }
+
+  .header--search-open .header-search {
+    display: block;
+    order: 1;
+    flex: 1;
+  }
+
+  .header--search-open .header-search-toggle {
+    order: 2;
+    margin-left: 8px;
   }
 }

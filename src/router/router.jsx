@@ -4,6 +4,9 @@
 import { lazy } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+
 // lazy() only loads each page's code when the user actually visits it.
 // This keeps the first page load small and fast.
 const Home = lazy(() => import('../pages/Home'))
@@ -12,12 +15,16 @@ const Cart = lazy(() => import('../components/Cart'))
 const Checkout = lazy(() => import('../pages/Checkout'))
 const NotFound = lazy(() => import('../pages/NotFound'))
 
-// Layout wraps every page — each page adds its own Header where needed
+// Layout wraps every page — the Header shows on every route
 function AppLayout() {
   return (
-    <main className="page-content">
-      <Outlet />
-    </main>
+    <>
+      <Header />
+      <main className="page-content">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   )
 }
 

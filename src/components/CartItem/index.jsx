@@ -4,6 +4,7 @@
 
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 import {
   increaseQuantity,
   decreaseQuantity,
@@ -14,6 +15,12 @@ import './CartItem.css'
 function CartItem({ item }) {
   // useDispatch lets us send actions to the Redux store.
   const dispatch = useDispatch()
+
+  // Remove this product and show a toast
+  function handleRemove() {
+    dispatch(removeFromCart(item.id))
+    toast.info('Removed from cart')
+  }
 
   return (
     <div className="cart-item">
@@ -28,7 +35,10 @@ function CartItem({ item }) {
       {/* Product info */}
       <div className="cart-item-info">
         <h3 className="cart-item-title">{item.title}</h3>
-        <p className="cart-item-price">${item.price}</p>
+        {item.category && (
+          <p className="cart-item-category">{item.category}</p>
+        )}
+        <span className="cart-item-each">≈${item.price.toFixed(2)} each</span>
       </div>
 
       {/* Quantity controls */}
@@ -57,11 +67,16 @@ function CartItem({ item }) {
         </button>
       </div>
 
+      {/* Line total for this item (price × quantity) */}
+      <div className="cart-item-total">
+        ${(item.price * item.quantity).toFixed(2)}
+      </div>
+
       {/* Remove: take this product out of the cart entirely */}
       <button
         type="button"
         className="cart-item-remove"
-        onClick={() => dispatch(removeFromCart(item.id))}
+        onClick={handleRemove}
       >
         Remove
       </button>
@@ -77,6 +92,7 @@ CartItem.propTypes = {
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
+    category: PropTypes.string,
   }).isRequired,
 }
 

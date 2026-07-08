@@ -1,21 +1,32 @@
 /*
   index.css — Global styles for ShoppyGlobe
-  This one file styles the entire app.
-  We keep colors in variables so we can reuse them easily.
+  A clean, modern layout with a warm retro personality.
+  Headings use a retro display font; body stays clean and readable.
 */
+
+/* ----- Fonts: retro display + clean body ----- */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap');
 
 /* ----- Colors & fonts we use everywhere ----- */
 :root {
-  --white: #ffffff;
-  --bg: #f5f7fa;
-  --text: #1f2937;
-  --text-light: #6b7280;
-  --border: #e5e7eb;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --radius: 10px;
-  --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --white: #fffdf7;        /* surface / cards */
+  --bg: #f4ede0;           /* warm cream background */
+  --text: #2b2521;         /* dark ink */
+  --text-light: #8a7d6d;   /* muted */
+  --border: #e7dcc7;       /* soft warm border */
+
+  --primary: #e8573f;      /* retro coral-red */
+  --primary-hover: #d3402a;
+  --accent: #1f9e8f;       /* retro teal */
+  --accent-soft: #d7efe9;
+  --sun: #f5b841;          /* warm yellow accent */
+
+  --shadow: 0 6px 20px rgba(43, 37, 33, 0.08);
+  --shadow-lift: 0 12px 28px rgba(43, 37, 33, 0.14);
+  --radius: 14px;
+
+  --font: 'DM Sans', 'Segoe UI', Tahoma, sans-serif;
+  --font-retro: 'Righteous', 'DM Sans', sans-serif;
 }
 
 /* ----- Reset default browser styles ----- */
@@ -27,49 +38,52 @@
 
 body {
   font-family: var(--font);
-  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
+  /* Soft retro gradient wash over the cream base */
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(245, 184, 65, 0.16), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(31, 158, 143, 0.14), transparent 40%),
+    radial-gradient(circle at 78% 92%, rgba(232, 87, 63, 0.12), transparent 45%);
+  background-attachment: fixed;
 }
 
 /* ----- Main app container ----- */
 #root {
   min-height: 100vh;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 32px 20px;
-}
-
-/* Placeholder pages (Cart, Checkout, etc.) */
-.page-content > div:not(.home):not(.product-detail):not(.loading):not(.error-message) {
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 60px 32px;
-  min-height: 280px;
+  padding: 28px 20px 28px;
+  /* Sticky footer: stack vertically and let the content area grow */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--text);
+  flex-direction: column;
 }
 
-/* ----- Basic element styles (ready for later steps) ----- */
+/* Page content grows to fill space so the footer stays at the bottom */
+.page-content {
+  flex: 1 0 auto;
+}
+
+/* ----- Retro headings ----- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-retro);
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
 
 h1 {
   font-size: 2rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 1.4rem;
   margin-bottom: 10px;
 }
 
@@ -84,22 +98,41 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  opacity: 0.85;
 }
 
+/* ----- Buttons: retro pill with a subtle lift ----- */
 button {
   font-family: var(--font);
-  font-size: 1rem;
-  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 11px 22px;
   border: none;
-  border-radius: var(--radius);
+  border-radius: 999px;
   background-color: var(--primary);
-  color: var(--white);
+  color: #fff;
   cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 button:hover {
   background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(232, 87, 63, 0.28);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 img {
